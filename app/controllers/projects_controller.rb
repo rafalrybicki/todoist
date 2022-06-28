@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
+  before_action except: %i[inbox new create] do
+    authorize_user(@project.owner_id)
+  end
 
   def show; end
 
@@ -45,6 +48,6 @@ class ProjectsController < ApplicationController
   end
 
   def set_project
-    @project = current_user.projects.find(params[:id])
+    @project = Project.find(params[:id])
   end
 end
