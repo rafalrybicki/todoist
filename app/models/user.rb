@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :projects, foreign_key: 'owner_id'
+
+  after_create do
+    Project.create!(owner_id: id, name: email, order: 0)
+  end
 end

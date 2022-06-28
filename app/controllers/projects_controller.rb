@@ -3,15 +3,46 @@ class ProjectsController < ApplicationController
 
   def show; end
 
-  def new; end
+  def new
+    @project = current_user.projects.build
+  end
 
   def edit; end
 
-  def create; end
+  def create
+    @project = current_user.projects.build(project_params)
+    @project.order = 1 # will be last_order + 1
 
-  def update; end
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to project_url(@project), notice: 'Project was successfully created.' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @project.update(project_params)
+        format.html { redirect_to project_url(@project), notice: 'Project was successfully updated.' }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy; end
+
+  def inbox
+    @inbox = current_user.projects.find_by(name: current_user.email)
+  end
+
+  private
+
+  def project_params
+    params.require(:project).permit(:name, :color, :favorite)
+  end
 
   def set_project
     @project = current_user.projects.find(params[:id])

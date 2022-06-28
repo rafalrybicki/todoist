@@ -1,0 +1,16 @@
+<h1>Add Project</h1>
+<%= form_with model: project do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :color %>
+    <%= form.number_field :color %>
+  </div>
+  <div>
+    <%= form.label :favorte %>
+    <%= form.check_box :favorite %>
+  </div>
+  <%= form.submit %>
+<% end %>
