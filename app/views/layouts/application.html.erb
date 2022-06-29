@@ -11,13 +11,17 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
+    <div class="flash">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    <% if false %>
       <%= button_to "Logout", destroy_user_session_path, method: :delete,  data: { turbo: false } %>
       <%= link_to "new project", new_project_path %>
       <%= current_user.email %>
     <% end %>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
