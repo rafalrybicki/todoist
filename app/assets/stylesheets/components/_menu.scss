@@ -1,0 +1,9 @@
+.menu {
+  background-color: lightgrey;
+  width: 0;
+  overflow: hidden;
+
+  &.open {
+    width: 291px;
+  }
+}

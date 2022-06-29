@@ -1,6 +1,6 @@
 <nav class="appbar">
   <button>toggle</button>
-  <button>home</button>
-  <%= button_to "Logout", destroy_user_session_path, 
+  <%= button_to "home", root_path %>
+  <%= button_to "logout", destroy_user_session_path, 
                           method: :delete,  data: { turbo: false } %>
 </nav>

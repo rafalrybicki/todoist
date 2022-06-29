@@ -12,8 +12,9 @@
 
   <body>
     <% if current_user %>
-      <%= render 'layouts/flash' %>
-      <%= render 'layouts/app_bar' %>
+      <%= render "layouts/flash" %>
+      <%= render "layouts/app_bar" %>
+      <%= render "layouts/menu" %>
     <% end %>
     <main>
       <%= yield %>
