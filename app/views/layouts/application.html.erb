@@ -11,14 +11,9 @@
   </head>
 
   <body>
-    <div class="flash">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </div>
-    <% if false %>
-      <%= button_to "Logout", destroy_user_session_path, method: :delete,  data: { turbo: false } %>
-      <%= link_to "new project", new_project_path %>
-      <%= current_user.email %>
+    <% if current_user %>
+      <%= render 'layouts/flash' %>
+      <%= render 'layouts/app_bar' %>
     <% end %>
     <main>
       <%= yield %>
