@@ -1,5 +1,18 @@
 <h1 style="color: <%= colors[@project.color][:value] %>">
   <%= @project.name %>
+  size = <%= @project.size %>
 </h1>
 
+<% @project.tasks.each do |task| %>
+  <%= link_to task.content, project_task_path(@project, task) %>
+  <br>
+  <br>
+<% end %>
+
+<%= link_to 'Add task', new_project_task_path(@project) %>
+<br>
 <%= link_to 'Edit', edit_project_path %>
+<br>
+<%= button_to 'Delete', project_path(@project),
+                        form: { data: { turbo_confirm: "Are you sure?" } },
+                        method: :delete %>

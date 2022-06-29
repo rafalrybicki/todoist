@@ -4,13 +4,11 @@ class ProjectsController < ApplicationController
     authorize_user(@project.owner_id)
   end
 
-  def show; end
-
   def new
     @project = current_user.projects.build
   end
 
-  def edit; end
+  def show; end
 
   def create
     @project = current_user.projects.build(project_params)
@@ -25,6 +23,8 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit; end
+
   def update
     respond_to do |format|
       if @project.update(project_params)
@@ -35,7 +35,13 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    @project.destroy
+
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Project was successfully deleted.', status: :see_other }
+    end
+  end
 
   def inbox
     @inbox = current_user.projects.find_by(name: current_user.email)

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'projects#inbox'
-  resources :projects, except: :index
+  resources :projects, except: :index do
+    resources :tasks, except: :index
+  end
+  devise_for :users
 end
