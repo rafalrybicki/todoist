@@ -1,16 +1,19 @@
-<div>
-  <br>
-  task.content = <%= task.content %>
-  <br>
-  task.id = <%= task.project.id %>
-  <br>
-  completed = <%= task.completed %>
-  <br>
-  <br>
-  <%= link_to 'edit', edit_project_task_path(@project, task) %>
-  <br>
-  <br>
-  <%= button_to 'delete', [@project, task],
-                          form: { data: { turbo_confirm: "Are you sure?" } },
-                          method: :delete %>
-</div>
+<%= turbo_frame_tag task do %>
+  <div>
+    <br>
+    task.content = <%= task.content %>
+    <br>
+    task.id = <%= task.id %>
+    <br>
+    completed = <%= task.completed %>
+    <br>
+    <br>
+    <%= link_to 'edit', edit_project_task_path(@project, task) %>
+    <br>
+    <br>
+    <%= button_to 'delete',
+                  [@project, task],
+                  form: { data: { turbo_confirm: "Are you sure?" } },
+                  method: :delete %>
+  </div>
+<% end %>

@@ -1,1 +1,5 @@
-<%= render 'form', project: @project %>
+<h1>Add new project</h1>
+
+<%= turbo_frame_tag @project do %>
+  <%= render 'form', project: @project %>
+<% end %>

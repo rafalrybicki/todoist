@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
       if @project.save
         format.html { redirect_to project_url(@project), notice: 'Project was successfully created.' }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
     end
   end
@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         format.html { redirect_to project_url(@project), notice: 'Project was successfully updated.' }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
     end
   end

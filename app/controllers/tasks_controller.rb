@@ -15,11 +15,14 @@ class TasksController < ApplicationController
     @task.order = order
 
     respond_to do |format|
+      notice = 'Task was successfully created.'
+
       if @task.save
         @project.update(size: @project.size += 1)
-        format.html { redirect_to @project, notice: 'Task was successfully created.' }
+        format.html { redirect_to @project, notice: }
+        format.turbo_stream { flash.now[:notice] = notice }
       else
-        format.html { render :new, status: :unprocessable_entity, notice: 'Something went wrong' }
+        render :new, status: :unprocessable_entity, notice: 'Something went wrong'
       end
     end
   end
@@ -27,21 +30,25 @@ class TasksController < ApplicationController
   def edit; end
 
   def update
+    notice = 'Task was successfully updated.'
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @project, notice: 'Task was successfully updated.' }
+        format.html { redirect_to @project, notice: }
+        format.turbo_stream { flash.now[:notice] = notice }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
     end
   end
 
   def destroy
+    notice = 'Task was successfully deleted.'
     @task.destroy
     @project.update(size: @project.size -= 1)
 
     respond_to do |format|
-      format.html { redirect_to @project, notice: 'Task was successfully deleted.', status: :see_other }
+      format.html { redirect_to @project, notice:, status: :see_other }
+      format.turbo_stream { flash.now[:notice] = notice }
     end
   end
 

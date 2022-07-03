@@ -1,5 +1,7 @@
 <h1>Editing Task</h1>
 
-<%= render 'form', project: @project %>
+<%= turbo_frame_tag @task do %>
+  <%= render 'form', project: @project %>
+<% end %>
 
 <%= link_to 'Back', :back %>
