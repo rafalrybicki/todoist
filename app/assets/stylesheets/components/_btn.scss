@@ -2,10 +2,10 @@
   border: none;
   font-size: 13px;
   font-weight: 600;
-  border: 1px solid transparent;
   height: 32px;
   padding: 0 12px;
   border-radius: 5px;
+  cursor: pointer;
 
   &--submit {
     margin-left: 12px;
@@ -22,10 +22,10 @@
   }
 
   &--cancel {
-    background-color: #f5f5f5;
+    background-color: var(--color-secondary-light);
 
     &:hover {
-      background-color: #e5e5e5;
+      background-color: var(--color-secondary);
     }
   }
 

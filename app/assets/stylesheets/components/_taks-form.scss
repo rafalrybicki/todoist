@@ -1,0 +1,40 @@
+.task-form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  // height: 122px;
+
+  &__content-input {
+    display: block;
+    padding: 0px 10px 40px;
+    min-width: 100%;
+    height: 81px;
+    border: 1px solid var(--color-secondary-light);
+    border-radius: 5px;
+    margin-bottom: 12px;
+
+    &:focus,
+    &:active {
+      outline: none;
+      border-color: var(--color-secondary-dark);
+    }
+  }
+
+  .selector {
+    position: absolute;
+    bottom: 54px;
+
+    &.date-selector {
+      left: 10px
+    }
+
+    &.project-selector {
+      left: 49px;
+    }
+  }
+
+  .btn--cancel {
+    margin-left: auto;
+  }
+
+}
