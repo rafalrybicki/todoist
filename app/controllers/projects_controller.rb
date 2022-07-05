@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
-  before_action except: %i[inbox new create] do
+  before_action except: %i[new create inbox] do
     authorize_user(@project.owner_id)
   end
 
@@ -8,7 +8,9 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build
   end
 
-  def show; end
+  def show
+    redirect_to inbox_path if @project.name == 'Inbox'
+  end
 
   def create
     @project = current_user.projects.build(project_params)
@@ -23,7 +25,9 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    redirect_to :back if project.name == 'Inbox'
+  end
 
   def update
     respond_to do |format|
@@ -44,7 +48,8 @@ class ProjectsController < ApplicationController
   end
 
   def inbox
-    @inbox = current_user.projects.find_by(name: current_user.email)
+    @project = current_user.projects.find_by(name: 'Inbox')
+    render 'show'
   end
 
   private

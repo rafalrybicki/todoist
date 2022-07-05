@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :tasks, foreign_key: 'owner_id'
 
   after_create do
-    Project.create!(owner_id: id, name: email, order: 0)
+    Project.create!(owner_id: id, name: 'Inbox', order: 1)
   end
 end

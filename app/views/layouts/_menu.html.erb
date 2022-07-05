@@ -3,13 +3,16 @@
     <% current_user.projects.each do |project| %>
       <% if project.created_at %>
         <li>
-          <%= link_to project.name, project %> <%= project.size %>
+          <%= link_to project.name, project %>
+          <span class="project-size">
+            <%= project.size %>
+          </span>
         </li>
       <% end %>
     <% end %>
+    <%= link_to "today", today_path %>
     <li>
       <%= link_to "+ new project", new_project_path %>
     </li>
   </ul>
-
 </div>
