@@ -4,7 +4,7 @@
       &#10004;
     </span>
 
-    <%= link_to task.content, project_task_path(@project, task), class: "task__content" %>
+    <%= link_to task.content, project_task_path(task.project, task), class: "task__content" %>
 
     <% if task.target_date %>
       <span class="<%= task.target_date_css_class %>">
@@ -12,9 +12,9 @@
       </span>
     <% end %>
 
-    <%= link_to 'edit', edit_project_task_path(@project, task), class: 'edit' %>
+    <%= link_to 'edit', edit_project_task_path(task.project, task), class: 'edit' %>
     <%= button_to 'delete',
-                  [@project, task],
+                  [task.project, task],
                   form: { data: { turbo_confirm: "Are you sure?" } },
                   method: :delete %>
   </div>

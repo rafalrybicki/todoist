@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_project
+  before_action :set_project, except: %i[today]
   before_action :set_task, only: %i[show edit update destroy]
 
   def new
@@ -50,6 +50,11 @@ class TasksController < ApplicationController
       format.html { redirect_to @project, notice:, status: :see_other }
       format.turbo_stream { flash.now[:notice] = notice }
     end
+  end
+
+  def today
+    @tasks = current_user.tasks.today
+    @overdue_tasks = current_user.tasks.overdue
   end
 
   private

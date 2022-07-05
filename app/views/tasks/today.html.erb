@@ -1,0 +1,15 @@
+<div class="today">
+  <h1>
+    Today <small class><%= Time.now.strftime("%a %-d %b") %></small>
+  </h1>
+  <h4>overdue</h4>
+  <%= render @overdue_tasks %>
+  <h4>today</h4>
+  <div id="tasks">
+    <%= render @tasks %>
+  </div>
+</div>
+
+<%#= turbo_frame_tag "tasks" do %>
+  <%#= render @project.tasks %>
+  <%# end %>
