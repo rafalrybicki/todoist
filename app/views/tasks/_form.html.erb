@@ -10,7 +10,7 @@
   <button type="button" class="selector project-selector">project</button>
   <button type="button" class="selector date-selector">date</button>
 
-  <button type="button" class="btn btn--cancel">Cancel</button>
+  <%= link_to 'Cancel', @project, class: "btn btn--cancel" %>
 
   <%= form.submit "Add task", class: "btn btn--submit" %>
 <% end %>

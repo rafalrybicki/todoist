@@ -1,9 +1,11 @@
 <div class="menu open">
   <ul>
     <% current_user.projects.each do |project| %>
-      <li>
-        <%= link_to project.name, project %>
-      </li>
+      <% if project.created_at %>
+        <li>
+          <%= link_to project.name, project %> <%= project.size %>
+        </li>
+      <% end %>
     <% end %>
     <li>
       <%= link_to "+ new project", new_project_path %>

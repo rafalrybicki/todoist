@@ -1,0 +1,81 @@
+.task {
+  position: relative;
+  height: 40px;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 1px solid var(--color-secondary);
+
+  &__checkbox {
+    display: block;
+    position: absolute;
+    top: 10.5px;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    border: 1px solid var(--color-secondary-darker);
+    z-index: 2;
+    color: transparent;
+    padding-left: 3px;
+    transition: all 0.2s;
+
+    &--completed {
+      background-color: black;
+    }
+
+    &:hover {
+      color: var(--color-secondary-darker);
+    }
+  }
+
+  &__content {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding-top: 12px;
+    padding-left: 30px;
+  }
+
+  &--completed {
+    .task__checkbox {
+      background-color: var(--color-secondary-darker);
+      color: var(--color-text-light);
+    }
+
+    .task__content {
+      text-decoration: line-through;
+      color: var(--color-secondary-darker);
+    }
+  }
+
+  &--scheduled {
+    height: 56px;
+
+    .task__target-date {
+      position: absolute;
+      display: block;
+      bottom: 7px;
+      left: 30px;
+      z-index: 2;
+      color: var(--color-secondary-darker);
+      font-size: 12px;
+
+      &--overdue {
+        color: var(--color-primary-dark);
+      }
+    }
+  }
+
+  .edit {
+    position: absolute;
+    right: 70px;
+    z-index: 2;
+    top: 10px
+  }
+
+  .button_to {
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+    top: 10px
+  }
+}

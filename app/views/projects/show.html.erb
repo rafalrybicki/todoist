@@ -1,13 +1,6 @@
 <h1 style="color: <%= colors[@project.color][:value] %>">
   <%= @project.name %>
-  size = <%= @project.size %>
 </h1>
-<br>
-<%= link_to 'Edit project', edit_project_path %>
-<br>
-<%= button_to 'Delete project', project_path(@project),
-                        form: { data: { turbo_confirm: "Are you sure?" } },
-                        method: :delete %>
 
 <%= turbo_frame_tag "tasks" do %>
   <%#= render "quotes/empty_state" %>
