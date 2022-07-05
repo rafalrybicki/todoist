@@ -9,5 +9,7 @@
 </div>
 
 <br>
-<%= link_to 'Add task', new_project_task_path(@project), data: { turbo_frame: dom_id(Task.new) } %>
-<%= turbo_frame_tag Task.new %>
+
+<%= turbo_frame_tag Task.new do %>
+  <%= link_to 'Add task', new_project_task_path(@project), data: { turbo_frame: dom_id(Task.new) } %>
+<% end %>
