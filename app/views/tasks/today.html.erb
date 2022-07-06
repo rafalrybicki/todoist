@@ -2,12 +2,12 @@
   <h1>
     Today <small class><%= Time.now.strftime("%a %-d %b") %></small>
   </h1>
+  <br>
   <h4>overdue</h4>
   <%= render @overdue_tasks %>
+  <br>
   <h4>today</h4>
-  <div id="tasks">
-    <%= render @tasks %>
-  </div>
+  <%= render @today_tasks %>
 </div>
 
 <%#= turbo_frame_tag "tasks" do %>

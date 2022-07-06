@@ -1,4 +1,16 @@
 module TasksHelper
+  def completed?
+    completed == true
+  end
+
+  def today?
+    target_date >= Time.now.beginning_of_day && target_date <= Time.now.end_of_day
+  end
+
+  def overdue?
+    completed == false && target_date < Time.now.beginning_of_day
+  end
+
   def task_css_class
     css_class = 'task'
     css_class += ' task--completed' if completed?
@@ -12,13 +24,5 @@ module TasksHelper
     css_class += ' task__target-date--overdue' if overdue?
 
     css_class
-  end
-
-  def completed?
-    completed == true
-  end
-
-  def overdue?
-    completed == false && target_date < Time.now.beginning_of_day
   end
 end

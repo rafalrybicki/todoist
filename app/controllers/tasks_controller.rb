@@ -54,7 +54,8 @@ class TasksController < ApplicationController
 
   def today
     @tasks = current_user.tasks.today
-    @overdue_tasks = current_user.tasks.overdue
+    @overdue_tasks = @tasks.select(&:overdue?)
+    @today_tasks = @tasks.select(&:today?)
   end
 
   private
