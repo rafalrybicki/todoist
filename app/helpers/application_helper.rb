@@ -3,6 +3,13 @@ module ApplicationHelper
     turbo_stream.prepend 'flash', partial: 'layouts/flash'
   end
 
+  def menu_list_item_for(name, path, quantity, &block)
+    render(
+      partial: 'layouts/menu_list_item',
+      locals: { name:, path:, quantity:, block: }
+    )
+  end
+
   def colors
     [
       { index: 1, name: 'Red', value: 'red' },

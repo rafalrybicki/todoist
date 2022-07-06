@@ -1,0 +1,10 @@
+<li class="menu__list-item" style="<%= 'order: -1' if name == 'Inbox' %>">
+  <%= capture(&block) %>
+  <%= active_link_to name, path %>
+
+  <% if quantity > 0 %>
+    <span class="project-size">
+      <%= quantity %>
+    </span>
+  <% end %>
+</li>
