@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless current_user.id == user_id
   end
 
-  private 
+  private
 
   def redirect_to_root
     redirect_to root_path

@@ -1,18 +1,37 @@
 <div class="menu open">
-  <ul>
-    <% current_user.projects.each do |project| %>
-      <% if project.created_at %>
-        <li>
-          <%= link_to project.name, project %>
-          <span class="project-size">
-            <%= project.size %>
-          </span>
-        </li>
+  <nav>
+    <ul class="menu__list">
+      <%= menu_list_item_for('Today', today_path, current_user.tasks.today.count) do |t| %>
+        <span class="day-number">
+          <%= Time.now.day %>
+        </span>
+        <%= bootstrap_icon "calendar",
+                            class: "today-icon",
+                            height: 16,
+                            color: "#058527" %>
       <% end %>
-    <% end %>
-    <%= link_to "today", today_path %>
-    <li>
-      <%= link_to "+ new project", new_project_path %>
-    </li>
-  </ul>
+
+      <% current_user.projects.each do |project| %>
+        <% if project.name != 'Inbox' && project.created_at %>
+          <%= menu_list_item_for(project.name, [project], project.size) do |t| %>
+            <%= bootstrap_icon "circle-fill",
+                                class: "project-icon",
+                                height: 10,
+                                color: colors[project.color][:value] %>
+          <% end %>
+        <% elsif project.created_at %>
+          <%= menu_list_item_for('Inbox', inbox_path, project.size) do |t| %>
+            <%= bootstrap_icon "inbox-fill",
+                                class: "inbox-icon",
+                                height: 17,
+                                color: "#246fe0" %>
+
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+
+    <br>
+    <%= link_to "+ Add new project", new_project_path, class: "btn" %>
+  </nav>
 </div>

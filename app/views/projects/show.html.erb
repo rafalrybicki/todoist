@@ -1,7 +1,7 @@
 <h1>
   <%= @project.name %>
 </h1>
-
+<br>
 <%= turbo_frame_tag "tasks" do %>
   <%#= render "quotes/empty_state" %>
   <%= render @project.tasks %>
@@ -11,5 +11,5 @@
 <br>
 
 <%= turbo_frame_tag Task.new do %>
-  <%= link_to 'Add task', new_project_task_path(@project), data: { turbo_frame: dom_id(Task.new) } %>
+  <%= link_to '+ Add task', new_project_task_path(@project), data: { turbo_frame: dom_id(Task.new) } %>
 <% end %>
