@@ -3,31 +3,40 @@
   font-size: 13px;
   font-weight: 600;
   height: 32px;
-  padding: 0 12px;
+  padding: 12px;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
 
+  &--icon {
+    padding: 0;
+    height: 28px;
+    width: 28px;
+    justify-content: center;
+    border-radius: 3px;
+  }
+
   &--submit {
     margin-left: 12px;
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
+    background-color: $color-primary;
+    color: $color-text-light;
 
     &:hover {
-      background-color: var(--color-primary-dark);
+      background-color: $color-primary-dark;
     }
 
     &:disabled {
-      background-color: var(--color-primary-light);
+      background-color: $color-primary-light;
+      opacity: 0.4;
     }
   }
 
   &--cancel {
-    background-color: var(--color-secondary-light);
+    background-color: $color-secondary-light;
 
     &:hover {
-      background-color: var(--color-secondary);
+      background-color: $color-secondary;
     }
   }
 

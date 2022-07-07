@@ -1,14 +1,13 @@
 .menu {
-  background-color: var(--color-secondary-light);
+  background-color: $color-secondary-light;
   width: 0;
   overflow: hidden;
   transform: translateX(-100%);
   transition: all 0.2s;
-  padding-top: 30px;
-  padding-left: 35px;
+  padding: 10px;
 
   &.open {
-    width: 305px;
+    min-width: 285px;
     transform: translateX(0);
   }
 
@@ -28,7 +27,7 @@
 
     &:hover,
     .active {
-      background-color: var(--color-secondary);
+      background-color: $color-secondary;
     }
 
     a {
@@ -37,30 +36,35 @@
       height: 100%;
       padding-top: 9px;
       padding-left: 35px;
+      border: 1px solid transparent;
+
+      &:focus {
+        border: 1px solid $color-primary;
+      }
     }
 
     .project-icon {
       position: absolute;
       top: 12px;
-      left: 13.5px;
+      left: 12.5px;
     }
 
     .inbox-icon {
       position: absolute;
       top: 8.5px;
-      left: 10px;
+      left: 9px;
     }
 
     .today-icon {
       position: absolute;
       top: 8.5px;
-      left: 10.5px;
+      left: 9.5px;
     }
 
     .day-number {
       position: absolute;
-      top: 10px;
-      left: 10.8px;
+      top: 10.5px;
+      left: 9.8px;
       font-weight: bold;
       font-size: 10px;
       display: flex;
@@ -76,7 +80,11 @@
       top: 11px;
       right: 14px;
       font-size: 12px;
-      color: var(--color-secondary-darker);
+      color: $color-secondary-darker;
     }
+  }
+
+  @include media($large) {
+    padding-top: 30px;
   }
 }
