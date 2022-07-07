@@ -1,6 +1,11 @@
 <nav class="appbar">
-  <button>toggle</button>
-  <%= link_to "home", root_path %>
-  <%= button_to "logout", destroy_user_session_path, 
-                          method: :delete, data: { turbo: false } %>
+  <button class="btn btn--icon">
+    <%= bootstrap_icon "justify", height: 23 %>
+  </button>
+  <%= link_to root_path, class:"btn btn--icon" do %>
+    <%= bootstrap_icon "house-door", height: 19 %>
+  <% end %>
+  <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class:"btn btn--icon" do %>
+    <%= bootstrap_icon "door-closed", height: 19 %>
+  <% end %>
 </nav>
