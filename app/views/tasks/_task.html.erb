@@ -1,10 +1,14 @@
 <%= turbo_frame_tag task do %>
   <div class="<%= task.task_css_class %>">
-    <span class="task__checkbox">
+    <%= button_to project_task_path(task.project, task, task: { completed: !task.completed }),
+                  method: :patch,
+                  class: "task__checkbox" do %>
       &#10004;
-    </span>
+    <% end %>
 
-    <%= link_to task.content, project_task_path(task.project, task), class: "task__content" %>
+    <%= link_to task.content,
+                project_task_path(task.project, task),
+                class: "task__content" %>
 
     <% if task.target_date %>
       <span class="<%= task.target_date_css_class %>">
@@ -12,7 +16,10 @@
       </span>
     <% end %>
 
-    <%= link_to 'edit', edit_project_task_path(task.project, task), class: 'edit' %>
+    <%= link_to 'edit',
+                edit_project_task_path(task.project, task),
+                class: 'edit' %>
+
     <%= button_to 'delete',
                   [task.project, task],
                   form: { data: { turbo_confirm: "Are you sure?" } },

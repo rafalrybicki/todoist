@@ -11,15 +11,15 @@
                             color: "#058527" %>
       <% end %>
 
-      <% current_user.projects.each do |project| %>
-        <% if project.name != 'Inbox' && project.created_at %>
+      <% current_user.projects.select(&:created_at).each do |project| %>
+        <% if project.name != 'Inbox' %>
           <%= menu_list_item_for(project.name, [project], project.size) do |t| %>
             <%= bootstrap_icon "circle-fill",
                                 class: "project-icon",
                                 height: 10,
                                 color: colors[project.color][:value] %>
           <% end %>
-        <% elsif project.created_at %>
+        <% elsif %>
           <%= menu_list_item_for('Inbox', inbox_path, project.size) do |t| %>
             <%= bootstrap_icon "inbox-fill",
                                 class: "inbox-icon",

@@ -61,7 +61,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:content, :target_date)
+    params.require(:task).permit(:content, :target_date, :completed, :project_id)
   end
 
   def set_project
