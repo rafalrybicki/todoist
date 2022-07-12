@@ -1,3 +1,8 @@
 <%= turbo_stream.append "tasks", @task %>
-<%#= turbo_stream.update Task.new, "" %>
+<%#= turbo_stream.update Task.new, '' %>
+<%#= turbo_stream.update "projects/#{@task.project.id}-size", @task.project.size %>
+<%= turbo_stream.replace @task.project %>
 <%= render_turbo_stream_flash_messages %>
+<% if @task.today? || @task.overdue? %>
+  <%= turbo_stream.replace "/today-size", current_user.tasks.today.size %>
+<% end %>

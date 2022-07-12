@@ -31,8 +31,11 @@ class TasksController < ApplicationController
 
   def update
     notice = 'Task was successfully updated.'
+    @was_today = @task.today? || @task.overdue?
     respond_to do |format|
       if @task.update(task_params)
+        @is_today = @task.today? || @task.overdue?
+        @update_today_tasks = (@was_today && !@is_today) || (!@was_today && @is_today)
         format.html { redirect_to @project, notice: }
         format.turbo_stream { flash.now[:notice] = notice }
       else

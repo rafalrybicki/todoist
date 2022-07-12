@@ -1,5 +1,5 @@
 <h1>Add new task</h1>
 
-<%= turbo_frame_tag @task do %>
+<%= turbo_frame_tag Task.new do %>
   <%= render 'form', project: @project, task: @project.tasks.build %>
 <% end %>

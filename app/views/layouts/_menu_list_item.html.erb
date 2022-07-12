@@ -1,9 +1,10 @@
 <li class="menu__list-item" style="<%= 'order: -1' if name == 'Inbox' %>">
   <%= capture(&block) %>
-  <%= active_link_to name, path %>
 
-  <% if quantity > 0 %>
-    <span class="project-size">
+  <%= active_link_to name, path, data: { turbo_frame: "_top" } %>
+
+  <span class="quantity <%= 'transparent' if quantity < 1 %>">
+    <%= turbo_frame_tag "#{path}-size" do %>
       <%= quantity %>
     </span>
   <% end %>

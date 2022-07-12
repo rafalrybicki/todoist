@@ -1,0 +1,16 @@
+<%= turbo_frame_tag project do %>
+  <%= menu_list_item_for(project.name, project_path(project), project.size) do |t| %>
+    <% if project.name != 'Inbox' %>
+      <%= bootstrap_icon "circle-fill",
+                        class: "project-icon",
+                        height: 10,
+                        color: colors[project.color][:value] %>
+    <% else %>
+      <%= bootstrap_icon "inbox-fill",
+                        class: "inbox-icon",
+                        height: 17,
+                        color: "#246fe0" %>
+
+    <% end %>
+  <% end %>
+<% end %>

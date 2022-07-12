@@ -1,33 +1,21 @@
+<%#= turbo_stream_from current_user.projects, "projects" %>
+
 <div class="menu open">
   <nav>
     <ul class="menu__list">
-      <%= menu_list_item_for('Today', today_path, current_user.tasks.today.count) do |t| %>
-        <span class="day-number">
-          <%= Time.now.day %>
-        </span>
-        <%= bootstrap_icon "calendar",
+      <%= turbo_frame_tag "today-tasks-size" do %>
+        <%= menu_list_item_for('Today', today_path, current_user.tasks.today.count) do |t| %>
+          <span class="day-number">
+            <%= Time.now.day %>
+          </span>
+          <%= bootstrap_icon "calendar",
                             class: "today-icon",
                             height: 16,
                             color: "#058527" %>
-      <% end %>
-
-      <% current_user.projects.select(&:created_at).each do |project| %>
-        <% if project.name != 'Inbox' %>
-          <%= menu_list_item_for(project.name, [project], project.size) do |t| %>
-            <%= bootstrap_icon "circle-fill",
-                                class: "project-icon",
-                                height: 10,
-                                color: colors[project.color][:value] %>
-          <% end %>
-        <% elsif %>
-          <%= menu_list_item_for('Inbox', inbox_path, project.size) do |t| %>
-            <%= bootstrap_icon "inbox-fill",
-                                class: "inbox-icon",
-                                height: 17,
-                                color: "#246fe0" %>
-
-          <% end %>
         <% end %>
+      <% end %>
+      <%= turbo_frame_tag "projects" do %>
+        <%= render current_user.projects.select(&:created_at) %>
       <% end %>
     </ul>
 

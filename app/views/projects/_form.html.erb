@@ -1,16 +1,47 @@
-<h1>Add Project</h1>
-<%= form_with model: project do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :color %>
-    <%= form.number_field :color %>
-  </div>
-  <div>
-    <%= form.label :favorte %>
-    <%= form.check_box :favorite %>
-  </div>
-  <%= form.submit %>
-<% end %>
+<div class="project-form-container">
+  <h1 class="project-form-title">
+    <%= project.created_at ? 'Edit' : 'Add' %> project
+  </h1>
+  <%= form_with model: project, class: 'project-form' do |form| %>
+    <div class="project-form__form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name,
+                          autofocus: true,
+                          autocomplete: "off",
+                          data: { controller: "project", action: "input->project#inputChange" } %>
+    </div>
+    <div class="project-form__form-group">
+      <%= form.label :color %>
+      <%= form.hidden_field :color %>
+      <%= form.text_field :temp_color,
+                          value: colors[18][:name],
+                          class: "temp-color",
+                          readonly: true,
+                          data: { controller: "project", action: "click->project#toggleColorList keypress->project#toggleColorList" } %>
+
+      <%= bootstrap_icon "circle-fill",
+                          id: "temp_color_svg",
+                          height: 12, 
+                          color: colors[18][:value] %>
+    </div>
+    <ul id="color-list" class="color-options">
+      <% colors.each_with_index do |color, index| %>
+        <li data-color-name="<%= color[:name] %>"
+            data-color-value="<%= color[:value] %>"
+            data-color-index="<%= index %>"
+            class="color-option"
+            tabindex="0"
+            data-controller="project"
+            data-action="click->project#selectColor keypress->project#selectColor">
+
+          <%= bootstrap_icon "circle-fill", color: color[:value], height: 12 %>
+          <%= color[:name] %>
+        </li>
+      <% end %>
+    </ul>
+    <% @project.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= form.submit 'Save', id: "btn-submit", disabled: true, data: { turbo_frame: "_top" }, class: "btn btn--submit" %>
+  <% end %>
+</div>

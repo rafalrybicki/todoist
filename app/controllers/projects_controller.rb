@@ -16,17 +16,15 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build(project_params)
     @project.order = 1 # will be last_order + 1
 
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to project_url(@project), notice: 'Project was successfully created.' }
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @project.save
+      redirect_to project_path(@project), notice: 'Project was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    redirect_to :back if project.name == 'Inbox'
+    redirect_to :back if @project.name == 'Inbox'
   end
 
   def update
