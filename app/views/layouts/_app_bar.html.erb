@@ -1,5 +1,7 @@
 <nav class="appbar">
-  <button class="btn btn--icon">
+  <button class="btn btn--icon"
+          data-controller="application"
+          data-action="click->application#toggleMenu">
     <%= bootstrap_icon "justify", height: 23 %>
   </button>
   <%= link_to root_path, class:"btn btn--icon" do %>
