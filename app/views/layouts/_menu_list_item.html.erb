@@ -3,9 +3,9 @@
 
   <%= active_link_to name, path, data: { turbo_frame: "_top" } %>
 
-  <span class="quantity <%= 'transparent' if quantity < 1 %>">
+  <span class="quantity">
     <%= turbo_frame_tag "#{path}-size" do %>
-      <%= quantity %>
+      <%= quantity if quantity > 0 %>
     </span>
   <% end %>
 </li>

@@ -16,9 +16,11 @@
       </span>
     <% end %>
 
-    <%= link_to 'edit',
-                edit_project_task_path(task.project, task),
-                class: 'edit' %>
+    <% if !task.completed? %>
+      <%= link_to 'edit',
+                  edit_project_task_path(task.project, task),
+                  class: 'edit' %>
+    <% end %>
 
     <%= button_to 'delete',
                   [task.project, task],

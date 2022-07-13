@@ -34,4 +34,8 @@ export default class extends Controller {
       this.submitBtn.disabled = false
     }
   }
+
+  resetInput() {
+    document.querySelector('#project_name').value = '';
+  }
 }

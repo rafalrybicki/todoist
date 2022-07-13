@@ -12,4 +12,8 @@ export default class extends Controller {
   toggleMenu() {
     this.menu.classList.toggle('open');
   }
+
+  remove() {
+    this.element.remove()
+  }
 }

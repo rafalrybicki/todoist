@@ -1,5 +1,6 @@
 <%= turbo_stream.replace @task %>
 <%= render_turbo_stream_flash_messages %>
-<% if @update_today_tasks %>
-  <%= turbo_stream.update "/today-size", current_user.tasks.today.size %>
+<% if @update_today_tasks_size %>
+  <%= turbo_stream.update "/today-size", today_tasks_size %>
 <% end %>
+<%= turbo_stream.update project_path(@task.project) + '-size', @task.project.tasks.not_completed.size %>

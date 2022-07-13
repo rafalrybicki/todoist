@@ -2,7 +2,9 @@
   <h1 class="project-form-title">
     <%= project.created_at ? 'Edit' : 'Add' %> project
   </h1>
-  <%= form_with model: project, class: 'project-form' do |form| %>
+  <%= form_with model: project,
+                class: 'project-form',
+                data: { controller: "project", action: "turbo:submit-end->project#resetInput" } do |form| %>
     <div class="project-form__form-group">
       <%= form.label :name %>
       <%= form.text_field :name,

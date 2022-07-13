@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  include TasksHelper
   before_action :set_project, except: %i[today]
   before_action :set_task, only: %i[show edit update destroy]
 
@@ -9,16 +10,16 @@ class TasksController < ApplicationController
   def show; end
 
   def create
-    order = @project.size > 0 ? @project.tasks.last.order += 1 : 1 # will not properly working - id instead of order
     @task = @project.tasks.build(task_params)
     @task.owner_id = current_user.id
-    @task.order = order
+    @task.order = 1 # @project.size > 0 ? @project.tasks.last.order + 1 : 1 new scope is needed?
 
     respond_to do |format|
-      notice = 'Task was successfully created.'
-
       if @task.save
         @project.update(size: @project.size += 1)
+        @update_today_tasks_size = update_today_tasks_size?(({ target_date: @task.target_date }))
+        notice = 'Task was successfully created.'
+
         format.html { redirect_to @project, notice: }
         format.turbo_stream { flash.now[:notice] = notice }
       else
@@ -30,12 +31,19 @@ class TasksController < ApplicationController
   def edit; end
 
   def update
-    notice = 'Task was successfully updated.'
-    @was_today = @task.today? || @task.overdue?
+    updated_task = {
+      prev_completed: @task.completed,
+      prev_target_date: @task.target_date
+    }
+
     respond_to do |format|
       if @task.update(task_params)
-        @is_today = @task.today? || @task.overdue?
-        @update_today_tasks = (@was_today && !@is_today) || (!@was_today && @is_today)
+        updated_task[:completed] = @task.completed
+        updated_task[:target_date] = @task.target_date
+
+        @update_today_tasks_size = update_today_tasks_size?(updated_task)
+        notice = 'Task was successfully updated.'
+
         format.html { redirect_to @project, notice: }
         format.turbo_stream { flash.now[:notice] = notice }
       else
@@ -45,9 +53,10 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    notice = 'Task was successfully deleted.'
     @task.destroy
     @project.update(size: @project.size -= 1)
+    @update_today_tasks_size = update_today_tasks_size?({ target_date: @task.target_date })
+    notice = 'Task was successfully deleted.'
 
     respond_to do |format|
       format.html { redirect_to @project, notice:, status: :see_other }

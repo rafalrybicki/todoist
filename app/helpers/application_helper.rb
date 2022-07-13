@@ -1,6 +1,10 @@
 module ApplicationHelper
+  def today_tasks_size
+    current_user.tasks.today.size
+  end
+
   def render_turbo_stream_flash_messages
-    turbo_stream.prepend 'flash', partial: 'layouts/flash'
+    turbo_stream.replace 'flash', partial: 'layouts/flash'
   end
 
   def menu_list_item_for(name, path, quantity, &block)

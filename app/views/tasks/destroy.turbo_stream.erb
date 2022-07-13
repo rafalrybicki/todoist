@@ -1,6 +1,6 @@
 <%= turbo_stream.remove @task %>
 <%= turbo_stream.replace @task.project %>
 <%= render_turbo_stream_flash_messages %>
-<% if @task.today? %>
-  <%= turbo_stream.replace "/today-size", current_user.tasks.today.size %>
+<% if @update_today_tasks_size %>
+  <%= turbo_stream.update "/today-size", today_tasks_size %>
 <% end %>
