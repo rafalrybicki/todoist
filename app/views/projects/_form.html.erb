@@ -4,13 +4,19 @@
   </h1>
   <%= form_with model: project,
                 class: 'project-form',
-                data: { controller: "project", action: "turbo:submit-end->project#resetInput" } do |form| %>
+                data: {
+                  controller: "project",
+                  action: "turbo:submit-end->project#resetInput"
+                } do |form| %>
     <div class="project-form__form-group">
       <%= form.label :name %>
       <%= form.text_field :name,
                           autofocus: true,
                           autocomplete: "off",
-                          data: { controller: "project", action: "input->project#inputChange" } %>
+                          data: {
+                            controller: "project",
+                            action: "input->project#inputChange"
+                          } %>
     </div>
     <div class="project-form__form-group">
       <%= form.label :color %>
@@ -19,7 +25,10 @@
                           value: colors[18][:name],
                           class: "temp-color",
                           readonly: true,
-                          data: { controller: "project", action: "click->project#toggleColorList keypress->project#toggleColorList" } %>
+                          data: { 
+                            controller: "project",
+                            action: "click->project#toggleColorList keypress->project#toggleColorList"
+                          } %>
 
       <%= bootstrap_icon "circle-fill",
                           id: "temp_color_svg",
@@ -44,6 +53,9 @@
     <% @project.errors.full_messages.each do |message| %>
       <div><%= message %></div>
     <% end %>
-    <%= form.submit 'Save', id: "btn-submit", disabled: true, data: { turbo_frame: "_top" }, class: "btn btn--submit" %>
+    <%= form.submit 'Save',
+                    id: "project-submit-btn",
+                    class: "btn btn--submit",
+                    disabled: true, data: { turbo_frame: "_top" } %>
   <% end %>
 </div>

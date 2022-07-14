@@ -5,7 +5,7 @@ export default class extends Controller {
   tempColorInput = document.querySelector('#project_temp_color');
   tempColorSVG = document.querySelector('#temp_color_svg');
   colorList = document.querySelector('#color-list');
-  submitBtn = document.querySelector('#btn-submit');
+  submitBtn = document.querySelector('#project-submit-btn');
 
   toggleColorList(e) {
     if (e.keyCode && e.keyCode !== 13) {

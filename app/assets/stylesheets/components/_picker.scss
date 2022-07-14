@@ -1,0 +1,13 @@
+.picker {
+  position: relative;
+
+  &__body {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.1s;
+
+    &.show {
+      opacity: 1
+    }
+  }
+}

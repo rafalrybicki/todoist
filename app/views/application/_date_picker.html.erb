@@ -1,0 +1,12 @@
+<div class="picker">
+  <button type="button"
+          class="date_picker"
+          data-target="<%= target %>"
+          data-controller="picker"
+          data-action="click->picker#togglePickerBody">
+    <%= text %>
+  </button>
+  <div id="<%= target%>" class="picker__body">
+    picker's body
+  </div>
+</div>
