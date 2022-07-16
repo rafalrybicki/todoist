@@ -11,3 +11,41 @@
     }
   }
 }
+
+.date-picker {
+  width: 250px;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .08), 0 0 1px 0 rgba(0, 0, 0, .3);
+
+  .suggestion {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 13px;
+
+    &:hover {
+      background-color: $color-secondary-light;
+    }
+
+    svg {
+      margin-right: 10px;
+    }
+
+    .weekday {
+      color: $color-secondary-darker;
+      margin-left: auto;
+    }
+  }
+
+
+  .calendar-month {
+    display: flex;
+    flex-wrap: wrap;
+
+    button {
+      width: calc(250px / 7);
+    }
+  }
+
+}

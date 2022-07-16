@@ -1,0 +1,20 @@
+<%= turbo_frame_tag 'calendar' do %>
+  <div class="calendar">
+    <div>
+      <%= target_date.strftime('%B %Y')%>
+    </div>
+    <div class="calendar-days">
+      <% (start_date(Date.today)..end_date(Date.today)).each do |date| %>
+        <button type="button">
+          <%= date.day %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% (start_date(Date.today)..end_date(Date.today)).each do |date| %>
+  <button type="button">
+    <%= date.day %>
+  </button>
+<% end %>
