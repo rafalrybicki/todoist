@@ -4,12 +4,12 @@ module ApplicationHelper
   end
 
   def render_turbo_stream_flash_messages
-    turbo_stream.replace 'flash', partial: 'layouts/flash'
+    turbo_stream.replace 'flash', partial: 'flash'
   end
 
   def menu_list_item_for(name, path, quantity, &block)
     render(
-      partial: 'layouts/menu_list_item',
+      partial: 'menu_list_item',
       locals: { name:, path:, quantity:, block: }
     )
   end

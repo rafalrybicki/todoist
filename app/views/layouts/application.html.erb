@@ -12,9 +12,9 @@
 
   <body data-controller="base" data-action="resize@window->base#watchBodyWidth">
     <% if current_user %>
-      <%= render "layouts/flash" %>
-      <%= render "layouts/app_bar" %>
-      <%= render "layouts/menu" %>
+      <%= render "flash" %>
+      <%= render "app_bar" %>
+      <%= render "menu" %>
     <% end %>
     <main>
       <%= yield %>
