@@ -3,15 +3,23 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   calendarMonth = document.getElementById('calendar-month');
   calendarTitle = document.getElementById('calendar-title');
+  prevMonthBtn = document.getElementById('prev-month');
+  resteMonthBtn = document.getElementById('reset-month');
+  nextMonthBtn = document.getElementById('next-month');
 
   initialize() {
     this.index = 0;
     this.calendar = getCalendar();
+    this.calendarTitle.replaceChildren(this.calendar[0].title);
     this.calendarMonth.replaceChildren(...this.calendar[0].month);
   }
 
+  togglePickerBody(e) {
+    document.getElementById(e.target.dataset.target).classList.toggle('show');
+  }
+
   changeMonth(e) {
-    const value = e.target.dataset.value;
+    const value = e.target.dataset.value || e.target.parentElement.dataset.value;
 
     switch (value) {
       case 'prev':
@@ -24,16 +32,30 @@ export default class extends Controller {
         this.index = 0;
     }
 
+    switch (this.index) {
+      case 0:
+        this.prevMonthBtn.setAttribute('disabled', true);
+        this.resteMonthBtn.setAttribute('disabled', true);
+        this.nextMonthBtn.removeAttribute('disabled');
+        break;
+      case 1:
+        this.prevMonthBtn.removeAttribute('disabled');
+        this.resteMonthBtn.removeAttribute('disabled');
+        break;
+      case 10:
+        this.nextMonthBtn.removeAttribute('disabled');
+        break;
+      case 11:
+        this.nextMonthBtn.setAttribute('disabled', true);
+        break;
+    }
+
     this.calendarMonth.replaceChildren(...this.calendar[this.index].month);
     this.calendarTitle.replaceChildren(...this.calendar[this.index].title);
   }
 
-  togglePickerBody(e) {
-    document.getElementById(e.target.dataset.target).classList.toggle('show');
-  }
-
   selectDate(e) {
-    console.log(e.target.dataset.value)
+    console.log(e.target.dataset)
   }
 }
 
@@ -57,7 +79,9 @@ function getCalendar() {
     while (day.valueOf() <= endDay.valueOf()) {
       const button = document.createElement('button');
       button.innerText = day.getDate();
-      button.dataset.value = `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`;
+      button.dataset.year = day.getFullYear();
+      button.dataset.month = day.getMonth() + 1;
+      button.dataset.day = day.getDate();
       button.setAttribute('type', 'button');
 
       if (day < firstDayOfTheMonth || day > lastDayOfTheMonth) {

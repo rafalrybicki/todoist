@@ -39,12 +39,79 @@
   }
 
 
-  .calendar-month {
-    display: flex;
-    flex-wrap: wrap;
+  .calendar {
+    position: relative;
+    padding: 8px 3px 4px;
+    border-top: 1px solid $color-secondary;
 
-    button {
-      width: calc(250px / 7);
+    &__title {
+      font-size: 13px;
+      font-weight: bold;
+      margin: 0 0 7px 7px;
+    }
+
+    &__actions {
+      position: absolute;
+      top: 3px;
+      right: 9px;
+      z-index: 10;
+      display: flex;
+      transition: all 0.1s;
+
+      button {
+        height: 24px;
+        width: 24px;
+        color: $color-secondary-darker;
+        border-radius: 3px;
+
+        &:hover:not([disabled]) {
+          background-color: $color-secondary;
+          color: $color-black;
+        }
+
+        &:disabled {
+          color: $color-secondary-dark;
+        }
+
+        &:nth-of-type(2) {
+          margin: 0 11px;
+        }
+      }
+    }
+
+    &__week-days {
+      display: flex;
+      justify-content: space-around;
+      color: $color-secondary-dark;
+      font-size: 10px;
+      height: 24px;
+
+      span {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    &__month {
+      display: flex;
+      flex-wrap: wrap;
+
+      button {
+        width: 24px;
+        height: 24px;
+        margin: 4px 5.428px;
+        border-radius: 50%;
+        font-size: 12px;
+        transition: all 0.1s;
+
+        &.active,
+        &:hover:not([disabled]) {
+          background-color: $color-primary;
+          color: $color-white;
+        }
+      }
     }
   }
 
