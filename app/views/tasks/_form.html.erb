@@ -1,31 +1,44 @@
-<%= form_with class: "task-form",
-              model: [@project, @task],
-              data: { 
-                controller: "task",
-                action: "turbo:submit-end->task#resetContent"
-              } do |form|%>
-  <% @task.errors.full_messages.each do |message| %>
-    <div><%= message %></div>
+<div class="task-form-container">
+  <%= form_with id: 'task-form',
+                class: "task-form",
+                model: [project, task],
+                data: { 
+                  controller: "task",
+                  action: "turbo:submit-end->task#resetContent",
+                  prev_date: str_date(task.target_date),
+                  prev_content: task.content,
+                  current_date: str_date(task.target_date),
+                  current_content: task.content
+                } do |form| %>
+
+    <% task.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
+    <%= form.text_field :content,
+                        autofocus: true,
+                        autocomplete: "off",
+                        class: "task-form__content-input",
+                        data: {
+                          controller: "task",
+                          action: "input->task#inputChange"
+                        } %>
+
+    <%= form.date_field :target_date, class: "hidden" %>
+    <%= form.number_field :project_id, class: "hidden" %>
+
+    <div class="pickers">
+      <%= render "date_picker" %>
+      <%# <button type="button" class="picker-btn">Project</button> %>
+    </div>
+
+    <%= link_to "Cancel", :back, class: "btn btn--cancel" %>
+
+    <%= form.submit "Add task",
+                    id: "task-submit-btn",
+                    class: "btn btn--submit",
+                    disabled: true %>
+
   <% end %>
 
-  <%= form.text_field :content,
-                      autofocus: true,
-                      autocomplete: "off",
-                      class: "task-form__content-input",
-                      data: {
-                        controller: "task",
-                        action: "input->task#inputChange"
-                      } %>
-
-  <%= form.date_select :target_date %>
-
-  <%= render "picker", target: "date-picker-body", text: "picker text" %>
-  <button type="button" class="selector project-selector">project</button>
-
-  <%= link_to "Cancel", @project, class: "btn btn--cancel" %>
-
-  <%= form.submit "Add task",
-                  id: "task-submit-btn",
-                  class: "btn btn--submit",
-                  disabled: true %>
-<% end %>
+</div>

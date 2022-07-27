@@ -19,16 +19,14 @@
     }
   }
 
-  .selector {
+  .pickers {
     position: absolute;
     bottom: 54px;
+    left: 10px;
+    display: flex;
 
-    &.date-selector {
-      left: 10px
-    }
-
-    &.project-selector {
-      left: 49px;
+    &:first-child {
+      margin-right: 10px;
     }
   }
 

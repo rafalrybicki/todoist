@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include DatePickerHelper
+
   def today_tasks_size
     current_user.tasks.today.size
   end
@@ -36,13 +38,5 @@ module ApplicationHelper
       { name: 'Taupe', value: '#ccac93' },
       { name: 'Charcoal', value: '#808080' }
     ]
-  end
-
-  def start_date(date = Date.today)
-    date.at_beginning_of_month.at_beginning_of_week
-  end
-
-  def end_date(date = Date.today)
-    date.at_end_of_month.at_end_of_week
   end
 end

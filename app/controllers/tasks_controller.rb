@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   include TasksHelper
   before_action :set_project, except: %i[today]
-  before_action :set_task, only: %i[show edit update destroy change_calendar_month]
+  before_action :set_task, only: %i[show edit update destroy]
 
   def new
     @task = @project.tasks.build
@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   def show; end
 
   def create
-    @task = @project.tasks.build(task_params)
+    @task = Task.new(task_params)
     @task.owner_id = current_user.id
     @task.order = 1 # @project.size > 0 ? @project.tasks.last.order + 1 : 1 new scope is needed?
 
@@ -68,14 +68,6 @@ class TasksController < ApplicationController
     @tasks = current_user.tasks.today
     @overdue_tasks = @tasks.select(&:overdue?)
     @today_tasks = @tasks.select(&:today?)
-  end
-
-  def change_calendar
-    # @task.target_date = Date.parse('2022-08-14')
-    # render :new
-    respond_to do |format|
-      format.turbo_stream { flash.now[:notice] = 'wtf?' }
-    end
   end
 
   private

@@ -1,0 +1,17 @@
+.hidden {
+  visibility: hidden;
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+}
+
+.picker-btn {
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid $color-secondary-dark;
+  border-radius: 5px;
+
+  svg {
+    margin-right: 6px;
+  }
+}

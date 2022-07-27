@@ -1,0 +1,100 @@
+.calendar {
+  position: relative;
+  padding: 48px 3px 4px;
+  border-top: 1px solid $color-secondary;
+  overflow: hidden;
+
+  &__actions {
+    position: absolute;
+    top: 3px;
+    right: 9px;
+    z-index: 10;
+    display: flex;
+    transition: all 0.1s;
+
+    a {
+      height: 24px;
+      width: 24px;
+      color: $color-secondary-darker;
+      border-radius: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover:not(.disabled) {
+        background-color: $color-secondary;
+        color: $color-black;
+      }
+
+      &.disabled {
+        color: $color-secondary-dark;
+        cursor: not-allowed;
+      }
+
+      &:nth-of-type(2) {
+        margin: 0 11px;
+      }
+    }
+  }
+
+  &__week-days {
+    position: absolute;
+    top: 27px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: $color-secondary-darker;
+    font-size: 10px;
+    height: 24px;
+    z-index: 11;
+    user-select: none;
+    padding: 0 8px;
+
+    span {
+      width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    position: absolute;
+    top: -39px;
+    left: 0;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 7px 9px;
+  }
+
+  &__month {
+    position: relative;
+    min-width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+
+    a {
+      width: 24px;
+      height: 24px;
+      margin: 4px 5.428px;
+      border-radius: 50%;
+      font-size: 12px;
+      transition: all 0.1s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.disabled {
+        cursor: not-allowed;
+        color: $color-secondary;
+      }
+
+      &:hover:not(.disabled),
+      &.selected:not(.disabled) {
+        background-color: $color-primary;
+        color: $color-white;
+      }
+    }
+  }
+}
