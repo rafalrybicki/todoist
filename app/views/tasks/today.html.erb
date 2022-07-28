@@ -1,11 +1,20 @@
 <div class="today">
   <h1>
-    Today <small class><%= Time.now.strftime("%a %-d %b") %></small>
+    Today
   </h1>
-  <br>
-  <h4>overdue</h4>
-  <%= render @overdue_tasks %>
-  <br>
-  <h4>today</h4>
-  <%= render @today_tasks %>
+
+  <% if @overdue_tasks.any? %>
+    <h2>Overdue</h2>
+    <%= render @overdue_tasks %>
+  <% end %>
+
+  <h2>
+    <%= Time.now.strftime("%-d %b %A") %>
+  </h2>
+
+  <%= turbo_frame_tag "tasks" do %>
+    <%= render @today_tasks %>
+  <% end %>
+
+  <%= render 'new_task_link', project_id: 1, selected_date: Date.today %>
 </div>

@@ -1,6 +1,6 @@
 <% if selected_date != (date ? date.to_s : date) %>
   <li>
-    <%= link_to date_picker_path(selected_date: date),
+    <%= link_to task_form_path(selected_date: date),
                 data: {controller: 'task', action: 'click->task#selectDate', date: date.to_s},
                 class: "suggestion" do %>
       <%= capture(&block) %>

@@ -24,7 +24,7 @@
                           action: "input->task#inputChange"
                         } %>
 
-    <%= form.date_field :target_date, class: "hidden" %>
+    <%= form.date_field :target_date, class: "hidden", value: params[:selected_date] %>
     <%= form.number_field :project_id, class: "hidden" %>
 
     <div class="pickers">

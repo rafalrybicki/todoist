@@ -1,12 +1,12 @@
 <div id="calendar" class="calendar">
   <div class="calendar__actions">
-    <%= link_to date_picker_path(month_index: month_index - 1), class: ('disabled' if month_index == 0) do %>
+    <%= link_to task_form_path(month_index: month_index - 1), class: ('disabled' if month_index == 0) do %>
       <%= bootstrap_icon "chevron-left", height: 11 %>
     <% end %>
-    <%= link_to date_picker_path(month_index: 0), class: ('disabled' if month_index == 0) do %>
+    <%= link_to task_form_path(month_index: 0), class: ('disabled' if month_index == 0) do %>
       <%= bootstrap_icon "circle", height: 9 %>
     <% end %>
-    <%= link_to date_picker_path(month_index: month_index + 1), class: ('disabled' if month_index == 11) do %>
+    <%= link_to task_form_path(month_index: month_index + 1), class: ('disabled' if month_index == 11) do %>
       <%= bootstrap_icon "chevron-right", height: 11 %>
     <% end %>
   </div>
@@ -28,7 +28,7 @@
 
     <% calendar_month_days.each do |date| %>
       <%= link_to date.day,
-                  date_picker_path(selected_date: date),
+                  task_form_path(selected_date: date),
                   class: calendar_day_css_class(date), 
                   data: { 
                     controller: "task", 

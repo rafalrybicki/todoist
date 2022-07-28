@@ -1,8 +1,7 @@
 module DatePickerHelper
-  def date_picker_path(options)
+  def task_form_path(options)
     new_params = {}
-    new_params[:project_id] = params[:project_id]
-    new_params[:task_id] = params[:task_id] if params[:action] == 'edit'
+    new_params[:project_id] = params[:project_id] || options[:project_id]
     new_params[:selected_date] = options.has_key?(:selected_date) ? options[:selected_date] : selected_date
     new_params[:month_index] = options[:month_index] if options[:month_index]
 

@@ -1,15 +1,11 @@
 <h1>
   <%= @project.name %>
 </h1>
-<br>
+
 <%= turbo_frame_tag "tasks" do %>
   <%#= render "quotes/empty_state" %>
   <%= render @project.tasks %>
 <% end %>
 </div>
 
-<br>
-
-<%= turbo_frame_tag Task.new do %>
-  <%= link_to '+ Add task', new_project_task_path(@project) %>
-<% end %>
+<%= render 'new_task_link', project_id: @project.id %>

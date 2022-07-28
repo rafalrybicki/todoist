@@ -3,6 +3,8 @@
   font-size: 14px;
   display: flex;
   align-items: center;
+  margin-top: 10px;
+  line-height: 1;
 
   &:hover {
     color: $color-primary;
@@ -27,8 +29,8 @@
 
     .plus {
       position: absolute;
-      top: -5px;
-      left: 2.5px;
+      top: -3px;
+      left: 2.8px;
       display: block;
       color: $color-secondary-darker;
       font-size: 24px;
