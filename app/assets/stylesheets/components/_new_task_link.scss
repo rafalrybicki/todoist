@@ -1,0 +1,38 @@
+.new-task-link {
+  color: $color-secondary-darker;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: $color-primary;
+
+    .circle {
+      background-color: $color-primary;
+
+      .plus {
+        color: $color-white;
+      }
+    }
+  }
+
+  .circle {
+    position: relative;
+    margin-right: 10px;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: transparent;
+
+    .plus {
+      position: absolute;
+      top: -5px;
+      left: 2.5px;
+      display: block;
+      color: $color-secondary-darker;
+      font-size: 24px;
+      font-weight: 100;
+    }
+  }
+}

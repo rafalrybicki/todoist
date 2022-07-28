@@ -1,0 +1,8 @@
+<%= turbo_frame_tag Task.new do %>
+  <%= link_to task_form_path(project_id: project_id, selected_date: selected_date), class: 'new-task-link' do %>
+    <span class="circle">
+      <span class="plus">+</span>
+    </span>
+    Add task
+  <% end %>
+<% end %>
