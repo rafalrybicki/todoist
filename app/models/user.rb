@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :tasks, foreign_key: 'owner_id'
 
   after_create do
-    Project.create!(owner_id: id, name: 'Inbox', order: 1)
+    inbox = Project.create!(owner_id: id, name: 'Inbox', order: 0)
+    User.find(id).update!(inbox_id: inbox.id)
   end
 end

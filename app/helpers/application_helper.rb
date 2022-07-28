@@ -1,6 +1,10 @@
 module ApplicationHelper
   include DatePickerHelper
 
+  def inbox_id 
+    inbox_id ||= current_user.inbox_id
+  end
+
   def today_tasks_size
     current_user.tasks.today.size
   end

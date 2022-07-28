@@ -1,6 +1,7 @@
 <div id="menu" class="menu open">
   <nav>
     <ul class="menu__list">
+
       <%= turbo_frame_tag "today-tasks-size" do %>
         <%= menu_list_item_for('Today', today_path, today_tasks_size) do |t| %>
           <span class="day-number">
