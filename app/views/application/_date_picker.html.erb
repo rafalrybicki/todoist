@@ -6,7 +6,7 @@
             data-controller="task"
             data-action="click->task#togglePickerBody">
       <%= bootstrap_icon "calendar-event", height: 11 %>
-      <%= date_picker_description selected_date %>
+      <%= target_date_description selected_date %>
     </button>
 
     <div id="date-picker-body" class="date-picker__body <%= 'show' if params[:month_index] %>">

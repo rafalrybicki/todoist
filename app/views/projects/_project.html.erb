@@ -1,16 +1,5 @@
 <%= turbo_frame_tag project do %>
   <%= menu_list_item_for(project.name, project_path(project), project.tasks.not_completed.size) do |t| %>
-    <% if project.id != inbox_id %>
-      <%= bootstrap_icon "circle-fill",
-                        class: "project-icon",
-                        height: 10,
-                        color: colors[project.color][:value] %>
-    <% else %>
-      <%= bootstrap_icon "inbox-fill",
-                        class: "inbox-icon",
-                        height: 17,
-                        color: "#246fe0" %>
-
-    <% end %>
+    <%= render 'project_icon', id: project.id, color_index: project.color %>
   <% end %>
 <% end %>

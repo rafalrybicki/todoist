@@ -6,24 +6,34 @@
       &#10004;
     <% end %>
 
-    <%= link_to task.content,
-                project_task_path(task.project, task),
-                class: "task__content" %>
+    <p class="task__content">
+      <%= task.content %>
+    </p>
 
     <% if task.target_date %>
       <span class="<%= task.target_date_css_class %>">
         <%= bootstrap_icon "calendar-event", height: 11 %>
-        <%= date_picker_description(task.target_date) %>
+        <%= target_date_description(task.target_date) %>
       </span>
     <% end %>
 
-    <%= link_to 'edit',
-                edit_project_task_path(task.project,task, selected_date: str_date(task.target_date)),
-                class: 'edit' %>
+    <%= link_to project_path(task.project_id),
+                data: { turbo_frame: "_top" },
+                class: "task__project-link" do %>
+      <%= render "project_icon", id: task.project.id, color_index: task.project.color %>
+      <%= task.project.name %>
+    <% end %>
 
-    <%= button_to 'delete',
-                  [task.project, task],
+    <%= link_to edit_project_task_path(task.project,task, selected_date: str_date(task.target_date)),
+                class: "task__btn" do %>
+      <%= bootstrap_icon "pen", height: 15, class: "edit-icon" %>
+    <% end %>
+
+    <%= button_to [task.project, task],
                   form: { data: { turbo_confirm: "Are you sure?" } },
-                  method: :delete %>
+                  method: :delete,
+                  class: "task__btn" do %>
+      <%= bootstrap_icon "trash3", height: 15%>
+    <% end %>
   </div>
 <% end %>

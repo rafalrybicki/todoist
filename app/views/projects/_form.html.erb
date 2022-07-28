@@ -1,9 +1,9 @@
 <div class="project-form-container">
   <h1 class="project-form-title">
-    <%= project.created_at ? 'Edit' : 'Add' %> project
+    <%= project.created_at ? "Edit" : "Add" %> project
   </h1>
   <%= form_with model: project,
-                class: 'project-form',
+                class: "project-form",
                 data: {
                   controller: "project",
                   action: "turbo:submit-end->project#resetInput"
@@ -53,7 +53,7 @@
     <% @project.errors.full_messages.each do |message| %>
       <div><%= message %></div>
     <% end %>
-    <%= form.submit 'Save',
+    <%= form.submit "Save",
                     id: "project-submit-btn",
                     class: "btn btn--submit",
                     disabled: true, data: { turbo_frame: "_top" } %>

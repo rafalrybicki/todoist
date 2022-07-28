@@ -1,7 +1,7 @@
 module ApplicationHelper
   include DatePickerHelper
 
-  def inbox_id 
+  def inbox_id
     inbox_id ||= current_user.inbox_id
   end
 
@@ -25,7 +25,7 @@ module ApplicationHelper
       { name: 'Black', value: 'black' },
       { name: 'Red', value: 'red' },
       { name: 'Orange', value: 'orange' },
-      { name: 'Yellow', value: 'yellow' },
+      { name: 'Yellow', value: 'rgb(250, 208, 0)' },
       { name: 'Olive Green', value: '#afb83b' },
       { name: 'Lime Green', value: 'limegreen' },
       { name: 'Green', value: 'green' },

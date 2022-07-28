@@ -15,7 +15,7 @@ module DatePickerHelper
     )
   end
 
-  def date_picker_description(date)
+  def target_date_description(date)
     return 'Due date' unless date
 
     date = date.to_date

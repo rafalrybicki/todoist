@@ -35,6 +35,7 @@ export default class extends Controller {
 
   resetContent() {
     document.getElementById('task_content').value = '';
+    this.taskSubmitBtn.disabled = true;
   }
 
   private

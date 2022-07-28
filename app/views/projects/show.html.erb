@@ -1,11 +1,14 @@
-<h1>
-  <%= @project.name %>
-</h1>
+<div class="project">
+  <h1>
+    <%= @project.name %>
+  </h1>
 
-<%= turbo_frame_tag "tasks" do %>
-  <%#= render "quotes/empty_state" %>
-  <%= render @project.tasks %>
-<% end %>
+  <%= turbo_frame_tag "tasks" do %>
+    <%#= render "quotes/empty_state" %>
+    <%= render @project.tasks %>
+  <% end %>
 </div>
 
 <%= render 'new_task_link', project_id: @project.id %>
+
+</div>

@@ -1,0 +1,10 @@
+<% if id == inbox_id %>
+  <%= bootstrap_icon "inbox-fill",
+                      class: "icon inbox-icon",
+                      color: "#246fe0" %>
+
+<% else %>
+  <%= bootstrap_icon "circle-fill",
+                      class: "icon project-icon",
+                      color: colors[color_index][:value] %>
+<% end %>

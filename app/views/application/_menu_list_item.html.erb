@@ -1,4 +1,4 @@
-<li class="menu__list-item" style="<%= 'order: -1' if name == 'Inbox' %>">
+<li class="menu__list-item">
   <%= capture(&block) %>
 
   <%= active_link_to name, path, data: { turbo_frame: "_top" } %>

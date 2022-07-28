@@ -1,16 +1,65 @@
+.today {
+  .task {
+    .task__target-date {
+      display: none;
+    }
+  }
+}
+
+.project {
+  .task {
+    .task__project-link {
+      display: none;
+    }
+  }
+}
+
 .task {
   position: relative;
+  display: flex;
+  align-items: flex-start;
   height: 40px;
-  cursor: pointer;
-  font-size: 14px;
+  padding: 8px 0;
+  font-size: 12px;
   border-bottom: 1px solid $color-secondary;
 
+  &:hover {
+    .task__btn {
+      display: block;
+    }
+  }
+
+  &--completed {
+    .task__checkbox {
+      background-color: $color-secondary-darker;
+      color: $color-text-light  !important;
+    }
+
+    .task__content {
+      text-decoration: line-through;
+      color: $color-secondary-darker;
+    }
+  }
+
+  &--scheduled {
+    height: 56px;
+
+    .task__target-date {
+      position: absolute;
+      display: block;
+      bottom: 7px;
+      left: 30px;
+      z-index: 2;
+      color: $color-secondary-darker;
+
+      &--overdue {
+        color: $color-primary-dark;
+      }
+    }
+  }
+
   &__checkbox {
-    position: absolute;
-    top: 10.5px;
-    z-index: 2;
-    padding-left: 1.5px;
-    padding-top: 1px;
+    margin-right: 10px;
     height: 18px;
     width: 18px;
     border-radius: 50%;
@@ -30,54 +79,55 @@
   }
 
   &__content {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding-top: 12px;
-    padding-left: 30px;
+    flex: 1;
+    font-size: 14px;
+    padding-top: 1px;
   }
 
-  &--completed {
-    .task__checkbox {
-      background-color: $color-secondary-darker;
-      color: $color-text-light;
-    }
+  &__project-link {
+    position: absolute;
+    bottom: 8px;
+    left: 30px;
+    color: $color-secondary-darker;
 
-    .task__content {
-      text-decoration: line-through;
-      color: $color-secondary-darker;
-    }
-  }
+    .icon {
+      margin-right: 3px;
 
-  &--scheduled {
-    height: 56px;
+      &.project-icon {
+        height: 8px;
+        width: 8px;
 
-    .task__target-date {
-      position: absolute;
-      display: block;
-      bottom: 7px;
-      left: 30px;
-      z-index: 2;
-      color: $color-secondary-darker;
-      font-size: 12px;
+      }
 
-      &--overdue {
-        color: $color-primary-dark;
+      &.inbox-icon {
+        height: 12px;
+        width: 12px;
+        margin-bottom: -1.3px;
+
       }
     }
   }
 
-  .edit {
-    position: absolute;
-    right: 70px;
-    z-index: 2;
-    top: 10px
+  &__btn {
+    display: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: $color-secondary;
+    }
+
+    .edit-icon {
+      margin: 5px 0 0 5px;
+    }
   }
 
-  .button_to:last-child {
-    position: absolute;
-    right: 10px;
-    z-index: 2;
-    top: 10px
+  .button_to {
+    display: inline-block;
+
+    &:last-of-type {
+      margin-left: 5px;
+    }
   }
 }
