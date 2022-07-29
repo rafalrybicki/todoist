@@ -1,0 +1,77 @@
+.authentication-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $color-secondary-light;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin-top: -43px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .authentication-container {
+    position: relative;
+    background-color: $color-white;
+    border: 1px solid $color-black;
+    margin-top: 80px;
+    width: 350px;
+    padding: 25px;
+    border: 1px solid $color-secondary;
+    border-radius: 8px;
+
+    h1 {
+      margin-bottom: 27px;
+      font-size: 26px;
+    }
+
+    form {
+      label {
+        display: block;
+        font-weight: 700;
+        font-size: 13px;
+        margin: 15px 0 10px;
+
+        &.remember {
+          position: absolute;
+          bottom: 104.6px;
+          left: 43px;
+        }
+      }
+
+      input:not([type="checkbox"]) {
+        display: block;
+        height: 38px;
+        border: 1px solid $color-secondary;
+        border-radius: 3px;
+        padding: 0px 10px;
+        width: 100%;
+      }
+
+      input[type="checkbox"] {
+        display: inline-block;
+        margin-top: 17px;
+        margin-bottom: -2px;
+      }
+
+      .btn--submit {
+        margin: 15px 0 20px;
+      }
+    }
+
+    br {
+      display: none;
+    }
+
+    span {
+      font-size: 13px;
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .red {
+      color: $color-primary;
+    }
+  }
+}
