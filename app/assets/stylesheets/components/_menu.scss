@@ -30,7 +30,15 @@
       background-color: $color-secondary;
     }
 
-    a {
+    &:hover {
+      .options {
+        display: flex;
+        background-color: inherit;
+      }
+    }
+
+    >.link {
+      z-index: 10;
       display: block;
       width: 100%;
       height: 100%;
@@ -61,6 +69,7 @@
     }
 
     .today-icon {
+      z-index: 1;
       position: absolute;
       top: 8.5px;
       left: 9.5px;
@@ -87,6 +96,31 @@
       font-size: 12px;
       color: $color-secondary-darker;
       user-select: none;
+    }
+
+    .options {
+      position: absolute;
+      top: 0;
+      right: 5px;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      height: calc(100% - 2px);
+      width: 50px;
+      margin: 1px 0;
+
+      >* {
+        min-height: 24px;
+        min-width: 24px;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          background-color: $color-secondary-light;
+        }
+      }
     }
   }
 

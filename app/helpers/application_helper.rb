@@ -13,10 +13,10 @@ module ApplicationHelper
     turbo_stream.replace 'flash', partial: 'flash'
   end
 
-  def menu_list_item_for(name, path, quantity, &block)
+  def menu_list_item_for(name, path, quantity, project_id = nil, &block)
     render(
       partial: 'menu_list_item',
-      locals: { name:, path:, quantity:, block: }
+      locals: { name:, path:, quantity:, project_id:, block: }
     )
   end
 

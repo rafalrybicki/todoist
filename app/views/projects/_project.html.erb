@@ -1,5 +1,5 @@
 <%= turbo_frame_tag project do %>
-  <%= menu_list_item_for(project.name, project_path(project), project.tasks.not_completed.size) do |t| %>
+  <%= menu_list_item_for(project.name, project_path(project), project.tasks.not_completed.size, project.id) do |t| %>
     <%= render 'project_icon', id: project.id, color_index: project.color %>
   <% end %>
 <% end %>
